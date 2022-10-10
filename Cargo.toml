@@ -48,4 +48,5 @@ members = [
     "slack/github/issue-creator/rust",
 
     "cloudinary/slack/image-rotator/rust",
+    "test",
 ]
