@@ -9,6 +9,6 @@
     )
         return JSON.stringify({
             chat_id: payload["message"]["chat"]["id"],
-            text: "Can't send strange url in this group!"
+            text: "Can't send strange url in this group\\!"
         })
 }
