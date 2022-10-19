@@ -1,14 +1,17 @@
 (s) => {
-    let x = JSON.parse(s);
-    if(x["message"]["new_chat_member"])
-        return  "new member \n"
-                +"id: "+x["message"]["new_chat_member"]["id"]+"\n"
-                +"first name: : "+x["message"]["new_chat_member"]["first_name"]+"\n"
-                +"username: "+x["message"]["new_chat_member"]["username"]+"\n";
-    if(x["message"]["left_chat_member"])
-        return  "left member \n"
-                +"id: "+x["message"]["left_chat_member"]["id"]+"\n"
-                +"first name: : "+x["message"]["left_chat_member"]["first_name"]+"\n"
-                +"username: "+x["message"]["left_chat_member"]["username"]+"\n";
-    return ""
+    let payload = JSON.parse(s);
+    if (payload["message"]["new_chat_member"])
+        return JSON.stringify({
+            chat_id: payload["message"]["chat"]["id"],
+            text: "Welcome [" + payload["message"]["new_chat_member"]["first_name"]
+                + "](tg://user?id=" + payload["message"]["new_chat_member"]["id"] + ")!",
+            parse_mode: "MarkdownV2",
+        });
+    else if (payload["message"]["left_chat_member"])
+        return JSON.stringify({
+            chat_id: payload["message"]["chat"]["id"],
+            text: "[" + payload["message"]["left_chat_member"]["first_name"]
+                + "](tg://user?id=" + payload["message"]["left_chat_member"]["id"] + ") left!",
+            parse_mode: "MarkdownV2",
+        });
 }
