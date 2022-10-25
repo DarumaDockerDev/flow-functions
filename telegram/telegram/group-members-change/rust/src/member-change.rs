@@ -1,4 +1,4 @@
-use flows_connector_dsi::telegram::{outbound, *};
+use flows_connector_dsi::telegram::{outbound::*, *};
 #[allow(unused_imports)]
 use wasmedge_bindgen::*;
 use wasmedge_bindgen_macro::*;
@@ -13,12 +13,14 @@ pub fn run(s: String) -> Result<String, String> {
             message.chat.id,
             format!("Welcome [{}](tg://{})\\!", n.first_name, n.id),
         )
+        .parse_mode(ParseMode::MarkdownV2)
         .build()
     } else if let Some(l) = &message.left_chat_member {
         outbound::message(
             message.chat.id,
             format!("[{}](tg://{}) left\\!", l.first_name, l.id),
         )
+        .parse_mode(ParseMode::MarkdownV2)
         .build()
     } else {
         Ok(String::new())
