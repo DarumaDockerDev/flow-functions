@@ -9,7 +9,7 @@ pub fn run(s: String) -> Result<String, String> {
     let message = payload.as_message()?;
 
     if message.text == "/ping" {
-        outbound::message(message.chat.id.to_string(), "__PONG\\!__")
+        outbound::message(message.chat.id, "__PONG\\!__")
             .reply(message.message_id.to_string())
             .parse_mode(ParseMode::MarkdownV2)
             .build()
