@@ -57,6 +57,8 @@ members = [
 
     "telegram/telegram/ping/rust",
     "telegram/telegram/group-members-change/rust",
+    "telegram/telegram/group-bad-message/rust",
+    "telegram/telegram/group-link-limit/rust",
 
     "cloudinary/slack/image-rotator/rust",
 
